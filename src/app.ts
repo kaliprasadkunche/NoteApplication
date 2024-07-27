@@ -10,7 +10,11 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 const MONGO_URI = process.env.MONGO_URI || 'your_local_mongodb_connection_string';
 
-app.use(cors());
+app.use(cors({
+  origin: 'https://note-application-frontend-snowy.vercel.app',
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
 app.use(express.json());
 
 mongoose.connect(MONGO_URI)
